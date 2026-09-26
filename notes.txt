@@ -1,0 +1,37 @@
+HYBRID SEARCH RAG :
+
+Hybrid Search =) Combine Multiple Search techniques
+1) Semantic Search --> Dense Vector Search -> Similar Search 
+2) Syntatic Search --> Exact Search -> Keyword Search -- > Sparse Vector Search
+
+
+Sparse Matrix VS Dense Matrix and when to use what 
+
+
+Mixing vector search and keyword search for Hybrid search
+hybrid_score = (1 — alpha) * sparse_score + alpha * dense_score
+
+
+
+                         Query
+                           │
+             "What is Agentic RAG?"
+                           │
+              ┌────────────┴────────────┐
+              │                         │
+              ▼                         ▼
+            BM25                     Chroma
+              │                         │
+              ▼                         ▼
+       Keyword ranking           Semantic ranking
+              │                         │
+              └────────────┬────────────┘
+                           │
+                           ▼
+                  EnsembleRetriever
+                           │
+                           ▼
+                   Combined ranking
+                           │
+                           ▼
+                    Top documents
