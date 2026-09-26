@@ -35,3 +35,45 @@ hybrid_score = (1 — alpha) * sparse_score + alpha * dense_score
                            │
                            ▼
                     Top documents
+
+
+
+
+
+
+RERANKING PLOT 
+
+                         USER QUERY
+                             │
+                             ▼
+                    ┌─────────────────┐
+                    │ Query Processing│
+                    └────────┬────────┘
+                             │
+                ┌────────────┴────────────┐
+                │                         │
+                ▼                         ▼
+             BM25                     Chroma
+          lexical search          semantic search
+                │                         │
+                └────────────┬────────────┘
+                             ▼
+                    Ensemble Retriever
+                             │
+                             ▼
+                     Top 10 Candidates
+                             │
+                             ▼
+                  ┌────────────────────┐
+                  │   Cross Encoder    │
+                  │     Reranker       │
+                  └─────────┬──────────┘
+                            │
+                            ▼
+                       Top 3 Docs
+                            │
+                            ▼
+                          LLM
+                            │
+                            ▼
+                     Final Answer
